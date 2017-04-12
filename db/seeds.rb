@@ -25,4 +25,12 @@ User.create!(name:  "Example User",
                confirmed_at: Time.zone.now)
 end
 
-#
+# Products
+50.times do
+  name  = Faker::Commerce.product_name
+  price = Faker::Commerce.price
+  description = Faker::Lorem.paragraph(2, true)
+  Product.create!(name: name,
+                  description: description,
+                  price: price)
+end
