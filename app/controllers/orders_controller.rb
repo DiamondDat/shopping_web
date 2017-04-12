@@ -24,8 +24,8 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    if @order.update_attributes(:order_params)
-      @order.approved_by_admin_id = current_user.admin.id
+    if @order.update_attributes(:order_params) && current_user.admin?
+      @order.approved_by_admin_id = current_user.id
       flash[:success] = "Order was successfully approved."
       redirect_to orders_path
     else
