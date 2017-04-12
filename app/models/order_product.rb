@@ -1,7 +1,6 @@
 class OrderProduct < ApplicationRecord
   belongs_to :product
   belongs_to :order
-
   validates :oder_id,    presence: true
   validates :product_id, presence: true
   validates :quantity,   presence: true,
