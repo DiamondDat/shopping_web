@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   def create
     @order = current_user.orders.create
     if @order.save
-      flash[:success] = "Your order have been submited. Please wait for an admin to approve it."
+      flash[:success] = "Your order have been submitted. Please wait for an admin to approve it."
       redirect_to carts_path
     else
       flase[:danger] = "Your order have something wrong. Please check it again."
