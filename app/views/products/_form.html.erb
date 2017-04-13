@@ -1,0 +1,26 @@
+<%= form_for(product, url: yield(:url)) do |f| %>
+  <div class="form-group">
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.label      :name %><br/>
+    <%= f.text_field :name %>
+
+    <%= f.label     :description %><br/>
+    <%= f.text_area :description %>
+
+    <%= f.label      :price %><br/>
+    <%= f.text_field :price %>
+  </div>
+    <%= f.submit yield(:button_text), class: "btn btn-success" %>
+    <span class="image">
+      <%= f.file_field :image, accept: 'image/jpeg, image/gif, img/png' %>
+    </span>
+<% end %>
+
+<script type="text/javascript">
+  $('#product_image').bind('changed', function() {
+    var size_in_megabytes = this.file[0].size/1024/1024
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5Mb. Please choose a smaller file')
+    }
+  });
+</script>

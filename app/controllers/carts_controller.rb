@@ -11,8 +11,10 @@ class CartsController < ApplicationController
     @cart = current_user.carts.create(cart_params)
     if @cart.save
       flash[:success] = "Product was successfully added to your cart."
+      redirect_to request.referer
     else
       flash[:danger] = "There is something wrong. Please try again."
+      redirect_to request.referer
     end
   end
 

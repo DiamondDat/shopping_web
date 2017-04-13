@@ -1,0 +1,34 @@
+<% provide(:title, 'Products')%>
+
+<%= will_paginate %>
+
+<h1>Products</h1>
+<% if current_user.admin? %>
+  <h4><%= link_to "Add new product", new_product_path %></h4>
+<% end %>
+<% @products.each do |product| %>
+  <table class="row">
+   <tr>
+     <th class="col-md-3">Product Name</th>
+     <th class="col-md-6">Description</th>
+     <th class="col-md-1">Image</th>
+     <th class="col-md-1">Price</th>
+     <% if current_user.admin? %>
+     <th class="col-md-1">Action</th>
+     <% end %>
+   </tr>
+   <tr>
+     <th class="col-md-3"><%= link_to product.name, product_path(product.id) %></th>
+     <th class="col-md-6"><%= product.description %></th>
+     <th class="col-md-1"><%= product.image %></th>
+     <th class="col-md-1"><%= product.price %></th>
+     <% if current_user.admin? %>
+       <th class="col-md-1"><%= link_to "Edit", edit_product_path(product) %>
+        | <%= link_to "Delete", product_path(product), method: :delete,
+                                                       data: { confirm: "Are u sure?" } %></th>
+     <% end %>
+   </tr>
+  </table>
+<% end %>
+
+<%= will_paginate %>

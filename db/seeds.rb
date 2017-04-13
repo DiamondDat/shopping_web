@@ -30,7 +30,7 @@ end
   name  = Faker::Commerce.product_name
   price = Faker::Commerce.price
   description = Faker::Lorem.paragraph(2, true)
-  Product.create!(name: name,
+  Product.create!(name:        name,
                   description: description,
-                  price: price)
+                  price:       price)
 end
