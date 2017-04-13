@@ -3,7 +3,7 @@ class CartsController < ApplicationController
   before_action :admin_user,   only: :destroy
 
   def index
-    @carts = Cart.find(params[:user_id])
+    @carts = current_user.carts
     @carts.paginate(page: params[:page])
   end
 
