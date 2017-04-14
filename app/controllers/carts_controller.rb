@@ -1,6 +1,5 @@
 class CartsController < ApplicationController
-  before_action :correct_user, only: [:create, :destroy, :update]
-  before_action :admin_user,   only: :destroy
+  before_action :correct_user, only: :destroy
 
   def index
     @carts = current_user.carts
