@@ -7,6 +7,6 @@ class OrderProduct < ApplicationRecord
                           numericality: { only_integer: true, greater_than: 0 }
 
   def order_price
-    product.price * quantity
+    self.inject { |sum, op| sum + op.product.price * quantity }
   end
 end

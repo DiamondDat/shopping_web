@@ -21,6 +21,9 @@
             </li>
           </ul>
         </li>
+        <% if current_user.admin? %>
+        <li><%= link_to "Orders", orders_path %></li>
+        <% end %>
         <% else %>
         <li><%= link_to "Sign In", new_user_session_path %></li>
         <% end %>

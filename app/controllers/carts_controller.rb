@@ -1,5 +1,4 @@
 class CartsController < ApplicationController
-  before_action :correct_user, only: :destroy
 
   def index
     @carts = current_user.carts
@@ -7,13 +6,12 @@ class CartsController < ApplicationController
   end
 
   def create
-    @cart = current_user.carts.create(cart_params)
-    if @cart.save
+    if Cart.create_or_update(current_user.id, cart_params[:product_id], cart_params[:quantity])
       flash[:success] = "Product was successfully added to your cart."
-      redirect_to request.referer
+      redirect_to carts_path
     else
       flash[:danger] = "There is something wrong. Please try again."
-      redirect_to request.referer
+      redirect_to carts_path
     end
   end
 
@@ -36,11 +34,5 @@ class CartsController < ApplicationController
   # Strong parameters
   def cart_params
     params.require(:cart).permit(:quantity, :product_id)
-  end
-
-  # Confirms correct user
-  def correct_user
-    @cart = current_user.carts.find_by(params[:id])
-    redirect_to root_path if @cart.nil?
   end
 end
