@@ -7,7 +7,7 @@ class OrderProduct < ApplicationRecord
                           numericality: { only_integer: true, greater_than: 0 }
 
   def order_price
-    self.inject { |sum, op| sum + op.product.price * quantity }
+    self.pluck(:total_price).inject {:+}
   end
 
 end
