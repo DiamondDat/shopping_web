@@ -9,4 +9,5 @@ class OrderProduct < ApplicationRecord
   def order_price
     self.inject { |sum, op| sum + op.product.price * quantity }
   end
+
 end
