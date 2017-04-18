@@ -5,5 +5,5 @@ class Category < ApplicationRecord
   has_many   :sub_categories, class_name: Category,
              foreign_key: :parent_id,
              dependent: :destroy
-  validations :name, presence: true
+  validates  :name, presence: true
 end
