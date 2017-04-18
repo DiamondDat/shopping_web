@@ -6,6 +6,11 @@ class OrdersController < ApplicationController
     @orders = Order.paginate(page: params[:page])
   end
 
+  def order_details
+    @order = Order.find(params[:id])
+    @order_details = @order.order_products
+  end
+
   def create
     order = Order.create(user_id: current_user.id)
     current_user.carts.each do |item|

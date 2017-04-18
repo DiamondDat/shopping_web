@@ -1,0 +1,29 @@
+<% provide(:title, "Order Details") %>
+<h1>Order Details</h1>
+<h3>Order of <%= @order.user.name %></h3>
+<% if @order.status == "approved" %>
+  <h4>Approved by Admin Id: <%= @order.approved_by_admin_id %></h4>
+<% else%>
+  <h4>Order is waiting to be approved</h4>
+<% end %>
+<p><%= link_to "Back", orders_path %></p>
+
+<% @order_details.each do |order_detail| %>
+<table>
+  <tr class="row">
+    <th class="col-md-6">Product Name</th>
+    <th class="col-md-2">Price</th>
+    <th class="col-md-2">Quantity</th>
+    <th class="col-md-2">Subtotal</th>
+  </tr>
+  <tr class="row">
+    <th class="col-md-6"><%= link_to order_detail.product.name,
+                             product_path(order_detail.product_id) %></th>
+    <th class="col-md-2"><%= order_detail.product.price %></th>
+    <th class="col-md-2"><%= order_detail.quantity %> </th>
+    <th class="col-md-2"><%= order_detail.total_price %></th>
+  </tr>
+</table>
+<% end %>
+
+<h4>Order's total: <%= @order.order_price %></h4>
