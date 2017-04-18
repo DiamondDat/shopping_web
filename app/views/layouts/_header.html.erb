@@ -6,7 +6,6 @@
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help", help_path %></li>
         <% if user_signed_in? %>
-        <li><%= link_to "Users", users_path %></li>
         <li><%= link_to " Products", products_path, class: "glyphicon glyphicon-hdd" %></li>
         <li><%= link_to " Cart", carts_path, class: "glyphicon glyphicon-shopping-cart" %></li>
         <li class="dropdown">
@@ -22,6 +21,7 @@
           </ul>
         </li>
         <% if current_user.admin? %>
+        <li><%= link_to "Users", users_path %></li>
         <li><%= link_to "Orders", orders_path %></li>
         <% end %>
         <% else %>

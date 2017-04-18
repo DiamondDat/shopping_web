@@ -8,4 +8,8 @@ module ApplicationHelper
       page_title + " | " + base_title
     end
   end
+
+  def carts_price(carts)
+    carts.inject(0) { |sum, item| sum + item.product.price * item.quantity }
+  end
 end

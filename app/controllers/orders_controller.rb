@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
     order = Order.create(user_id: current_user.id)
     current_user.carts.each do |item|
       total_price = item.product.price * item.quantity
-      op = order.order_products.create(product_id: item.id, quantity: item.quantity, total_price: total_price)
+      order.order_products.create(product_id: item.id, quantity: item.quantity, total_price: total_price)
     end
 
     if order.save
