@@ -1,4 +1,8 @@
 <% provide(:title, 'Products')%>
 
+<%= will_paginate %>
+
 <h1>Products</h1>
 <%= render 'shared/listing', products: @products %>
+
+<%= will_paginate %>
