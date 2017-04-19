@@ -15,8 +15,8 @@ Rails.application.routes.draw do
       get 'order_details'
     end
   end
-  resources  :categories do
-    resources :categories
+  resources  :categories,  only: [:index, :create, :update, :destroy] do
+    resources :categories, only: [:show, :update, :destroy]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
