@@ -1,0 +1,29 @@
+<%= will_paginate %>
+
+<% if current_user.admin? %>
+  <h4><%= link_to "Add new product", new_product_path %></h4>
+<% end %>
+<% products.each do |product| %>
+  <table>
+   <tr class="row">
+     <th class="col-md-3">Product Name</th>
+     <th class="col-md-6">Description</th>
+     <th class="col-md-1">Image</th>
+     <th class="col-md-1">Price</th>
+     <% if current_user.admin? %>
+     <th class="col-md-1">Action</th>
+     <% end %>
+   </tr>
+   <tr class="row">
+     <th class="col-md-3"><%= link_to product.name, product_path(product.id) %></th>
+     <th class="col-md-6"><%= product.description %></th>
+     <th class="col-md-1"><%= product.image %></th>
+     <th class="col-md-1"><%= product.price %></th>
+     <th class="col-md-1"><%= render 'shared/admin_action',
+                              edit_url: edit_product_path(product.id),
+                              delete_url: product_path(product) %></th>
+   </tr>
+  </table>
+<% end %>
+
+<%= will_paginate %>
