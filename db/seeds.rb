@@ -34,3 +34,9 @@ end
                   description: description,
                   price:       price)
 end
+
+# Categories
+10.times do
+  name = Faker::Commerce.department
+  Category.create!(name: name)
+end
