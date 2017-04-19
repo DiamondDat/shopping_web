@@ -2,15 +2,15 @@
 <h1>Cart</h1>
   <% if @carts.any? %>
     <% @carts.each do |cart| %>
-      <table class="row">
-        <tr>
+      <table>
+        <tr class="row">
           <th class="col-md-5">Product Name</th>
           <th class="col-md-2">Quantity</th>
           <th class="col-md-2">Price</th>
           <th class="col-md-2">Total</th>
           <th class="col-md-3">Action</th>
         </tr>
-        <tr>
+        <tr class="row">
           <td class="col-md-5"><%= link_to cart.product.name, product_path(cart.product.id) %></td>
           <td class="col-md-2"><%= cart.quantity %></td>
           <td class="col-md-2"><%= cart.product.price%></td>
