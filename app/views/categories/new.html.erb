@@ -1,0 +1,10 @@
+<% provide(:title,       'New Category') %>
+<% provide(:button_text, 'Create new category') %>
+<% provide(:url,          categories_path) %>
+
+<h1>New Category</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= render 'form', category: @category %>
+  </div>
+</div>

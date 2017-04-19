@@ -1,0 +1,13 @@
+<%= form_for(category, url: yield(:url)) do |f| %>
+  <div class="form-group">
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.label      :name %>
+    <%= f.text_field :name %>
+
+    <h4>Add parent(Optional):</h4>
+    <%= f.collection_check_boxes :parent_id, Category.all, :id, :name do |cb| %>
+      <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(_class: "checkbox") + cb.text} %>
+    <% end %>
+  </div>
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

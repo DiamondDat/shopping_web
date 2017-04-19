@@ -1,13 +1,15 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_user,   only: [:index, :create, :update, :destroy]
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:edit, :update, :destroy]
 
   def index
-    @categories = Category.paginate(page: params[:page])
+    @categories = Category.all
   end
 
   def show
+    category      = Category.find(params[:category_id])
+    @sub_category = category.sub_categories.find(params[:id])
   end
 
   def new
