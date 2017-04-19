@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :user_signed_in?, only: [:show, :edit, :update, :destroy]
   before_action :correct_user,    only: [:edit, :update]
   before_action :admin_user,      only: [:index, :destroy]
+  before_action :set_user,        only: [:show, :destroy]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -19,6 +20,11 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   # Confirms the correct user.
   def correct_user
     @user = User.find(params[:id])
