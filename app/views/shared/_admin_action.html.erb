@@ -1,0 +1,5 @@
+<% if current_user.admin? %>
+ <%= link_to "Edit", edit_url %> |
+ <%= link_to "X",    delete_url, method: :delete,
+                                 data: { confirm: "Are u sure?" } %>
+<% end %>
