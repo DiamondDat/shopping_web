@@ -8,16 +8,20 @@
       <ul class="well col-md-6 col-md-offset-3" style="list-style: none;">
         <li>
           <%= category.name %>
-          <%= render 'shared/admin_action', edit_url:   edit_category_path(category.id),
-                                            delete_url: category_path(category) %>
+          <span style="float: right;">
+            <%= render 'shared/admin_action', edit_url:   edit_category_path(category.id),
+                                              delete_url: category_path(category) %>
+          </span>
     <% end %>
           <% category.sub_categories.each do |sub_category| %>
             <ul>
               <li>
                 <%= link_to sub_category.name, category_category_path(category, category.sub_categories.ids) %>
-                <%= render 'shared/admin_action',
-                    edit_url:   edit_category_category_path(category, category.sub_categories.ids),
-                    delete_url: category_category_path(category, category.sub_categories.ids) %>
+                <span style="float: right; padding-right: 200px">
+                  <%= render 'shared/admin_action',
+                      edit_url:   edit_category_category_path(category, category.sub_categories.ids),
+                      delete_url: category_category_path(category, category.sub_categories.ids) %>
+                </span>
               </li>
             </ul>
         <% end %>
