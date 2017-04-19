@@ -9,6 +9,11 @@
 
     <%= f.label      :price %><br/>
     <%= f.text_field :price %>
+
+    <h4>Choose category: </h4>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+      <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(_class: "checkbox") + cb.text} %>
+    <% end %>
   </div>
     <%= f.submit yield(:button_text), class: "btn btn-success" %>
     <span class="image">
