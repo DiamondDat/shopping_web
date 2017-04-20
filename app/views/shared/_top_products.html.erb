@@ -6,7 +6,7 @@
       <th class="col-md-1">Amount Sold</th>
     </tr>
     <tr>
-      <td class="col-md-3"><%= @products.find(id).name %></td>
+      <td class="col-md-3"><%= link_to @products.find(id).name, product_path(id) %></td>
       <td class="col-md-1"><%= quantity %></td>
     </tr>
   </table>
