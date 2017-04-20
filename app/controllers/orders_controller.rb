@@ -1,13 +1,13 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_user, only: [:update]
+  before_action :set_order,  only: [:order_details, :update, :destroy]
 
   def index
     @orders = Order.paginate(page: params[:page])
   end
 
   def order_details
-    @order = Order.find(params[:id])
     @order_details = @order.order_products
   end
 
@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     order = Order.create(user_id: current_user.id)
     current_user.carts.each do |item|
       total_price = item.product.price * item.quantity
-      order.order_products.create(product_id: item.id, quantity: item.quantity, total_price: total_price)
+      order.order_products.create(product_id: item.product_id, quantity: item.quantity, total_price: total_price)
     end
 
     if order.save
@@ -29,7 +29,6 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find(params[:id])
     if @order.update_attributes(order_params) && current_user.admin?
       flash[:success] = "Order was successfully approved."
       redirect_to orders_path
@@ -40,12 +39,17 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    Order.find(params[:id]).destroy
+    @order.destroy
     flash[:success] = "Order was successfully deleted."
     redirect_to orders_path
   end
 
   private
+
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
   # Strong parameters
   def order_params
     params.require(:order).permit(:user_id, :status, :approved_by_admin_id)

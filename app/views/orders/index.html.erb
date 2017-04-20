@@ -1,6 +1,9 @@
 <% provide(:title, 'Orders') %>
 <h1>Orders</h1>
 <% if @orders.any? %>
+
+<%= will_paginate %>
+
   <% @orders.each do |order| %>
   <table>
     <tr class="row">
@@ -32,6 +35,9 @@
     </tr>
   </table>
   <% end %>
+
+<%= will_paginate %>
+
 <% else %>
   <p>Don't have any order</p>
 <% end %>
