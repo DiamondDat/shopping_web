@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   before_action :set_order,  only: [:order_details, :update, :destroy]
 
   def index
-    @orders = Order.paginate(page: params[:page])
+    @orders = Order.paginate(page: params[:page], per_page: 10)
   end
 
   def order_details

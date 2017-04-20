@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action :set_user,        only: [:show, :destroy]
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page], per_page: 10)
   end
 
   def show

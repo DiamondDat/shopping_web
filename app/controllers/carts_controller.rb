@@ -1,8 +1,9 @@
 class CartsController < ApplicationController
+  before_action :set_cart, only: [:update, :destroy]
 
   def index
     @carts = current_user.carts
-    @carts.paginate(page: params[:page])
+    @carts.paginate(page: params[:page], per_page: 10)
   end
 
   def create
@@ -16,7 +17,6 @@ class CartsController < ApplicationController
   end
 
   def update
-    @cart = Cart.find(params[:id])
     if @cart.update_attributes(cart_params)
       redirect_to carts_path
     else
@@ -25,12 +25,17 @@ class CartsController < ApplicationController
   end
 
   def destroy
-    Cart.find(params[:id]).destroy
+    @cart.destroy
     flash[:danger] = "Product have been removed from your cart."
     redirect_to carts_path
   end
 
   private
+  # Find cart
+  def set_cart
+    @cart = Cart.find(params[:id])
+  end
+
   # Strong parameters
   def cart_params
     params.require(:cart).permit(:quantity, :product_id)
