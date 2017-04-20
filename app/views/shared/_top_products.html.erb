@@ -1,0 +1,13 @@
+<h2>Top Products</h2>
+<% sorted_stats.each do |id, quantity| %>
+  <table>
+    <tr>
+      <th class="col-md-3">Product</th>
+      <th class="col-md-1">Amount Sold</th>
+    </tr>
+    <tr>
+      <td class="col-md-3"><%= @products.find(id).name %></td>
+      <td class="col-md-1"><%= quantity %></td>
+    </tr>
+  </table>
+<% end %>

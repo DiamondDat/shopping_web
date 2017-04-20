@@ -9,6 +9,7 @@ module ApplicationHelper
     end
   end
 
+  # Returns the total of cart
   def carts_price(carts)
     carts.inject(0) { |sum, item| sum + item.product.price * item.quantity }
   end
