@@ -1,13 +1,13 @@
 <h2>Top Products</h2>
-<% sorted_stats.each do |id, quantity| %>
+<% top_products.each do |item| %>
   <table>
     <tr class="row">
       <th class="col-md-7">Product</th>
       <th class="col-md-5">Amount Sold</th>
     </tr>
     <tr class="row">
-      <td class="col-md-7"><%= link_to @products.find(id).name, product_path(id) %></td>
-      <td class="col-md-5"><%= quantity %></td>
+      <td class="col-md-7"><%= link_to item.name, product_path(item.id) %></td>
+      <td class="col-md-5"><%= item.quantity %></td>
     </tr>
   </table>
 <% end %>

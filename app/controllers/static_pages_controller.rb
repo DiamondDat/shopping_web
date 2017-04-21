@@ -1,10 +1,11 @@
 class StaticPagesController < ApplicationController
   def home
-    # Get all the products
-    @products = Product.all
-    # Get top product
-    stats = OrderProduct.group(:product_id).sum(:quantity)
-    @sorted_stats = stats.sort_by{ |k, v| v }.reverse.first(10).to_h
+    quantity_sql = OrderProduct.select('SUM(order_products.quantity)')
+            .where('products.id = order_products.product_id')
+            .group(:product_id).to_sql
+    @top_products = Product.select('*', "(#{quantity_sql}) as quantity")
+                         .order('quantity DESC')
+                         .limit(10)
   end
 
   def about
@@ -15,4 +16,5 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
 end
