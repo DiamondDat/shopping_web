@@ -19,7 +19,7 @@
       <th class="col-md-4"><%= order.user.name %></th>
       <th class="col-md-2"><%= order.status %></th>
       <th class="col-md-1"><%= order.approved_by_admin_id %></th>
-      <th class="col-md-2"><%= order.order_price %></th>
+      <th class="col-md-2"><%= number_to_currency(order.order_price) %></th>
       <th class="col-md-1">
         <%= form_for order, url: order_path(order.id) do |f| %>
           <%= f.hidden_field :status, value: "approved" %>

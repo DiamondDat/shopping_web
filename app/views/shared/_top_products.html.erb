@@ -1,13 +1,13 @@
 <h2>Top Products</h2>
 <% sorted_stats.each do |id, quantity| %>
   <table>
-    <tr>
-      <th class="col-md-3">Product</th>
-      <th class="col-md-1">Amount Sold</th>
+    <tr class="row">
+      <th class="col-md-7">Product</th>
+      <th class="col-md-5">Amount Sold</th>
     </tr>
-    <tr>
-      <td class="col-md-3"><%= link_to @products.find(id).name, product_path(id) %></td>
-      <td class="col-md-1"><%= quantity %></td>
+    <tr class="row">
+      <td class="col-md-7"><%= link_to @products.find(id).name, product_path(id) %></td>
+      <td class="col-md-5"><%= quantity %></td>
     </tr>
   </table>
 <% end %>

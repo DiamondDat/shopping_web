@@ -13,7 +13,7 @@
         <tr class="row">
           <td class="col-md-5"><%= link_to cart.product.name, product_path(cart.product.id) %></td>
           <td class="col-md-2"><%= cart.quantity %></td>
-          <td class="col-md-2"><%= cart.product.price%></td>
+          <td class="col-md-2"><%= number_to_currency(cart.product.price) %></td>
           <td class="col-md-2"><%= cart.quantity * cart.product.price %></td>
           <td class="col-md-3"><%= link_to "Edit", product_path(cart.product.id) %>
           | <%= link_to "X", cart, method: :delete,
@@ -28,7 +28,10 @@
       <% end %>
     </div>
     <div style="float: right;">
-      <p><span style="font-size: 25px">Your cart's total price is: <%= carts_price(@carts) %></span></p>
+      <p><span style="font-size: 25px">Your cart's total price is:
+        <%= number_to_currency(carts_price(@carts)) %>
+      </span>
+      </p>
     </div>
   <% else %>
     <p>Your cart is empty. Please add some products to it.</p>
